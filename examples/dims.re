@@ -1,4 +1,4 @@
-/** This is a simple example for tyre. */;
+/** This is a simple example for tyre. */
 
 /* We create a typed regular expression matching "[0-9]+x[0-9]+"
        <&> is the sequence operator. *> is the prefix operator.

@@ -47,7 +47,7 @@ let l = [
   ("angstrom", angstrom),
 ];
 
-/** Utilities */;
+/** Utilities */
 
 let benchs = {
   let get_sample = ((name, f)) => (

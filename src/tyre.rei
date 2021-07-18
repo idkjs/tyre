@@ -1,4 +1,4 @@
-/** {1 Typed regular expressions} */;
+/** {1 Typed regular expressions} */
 
 /**
 Tyre is a set of combinators to build type-safe regular expressions, allowing automatic extraction and modification of matched groups.
@@ -27,7 +27,7 @@ val dim_re : (int * int) Tyre.re
 val dim : (int * int) Tyre.t
 ]}
 
-*/;
+*/
 
 /** A typed regular expression.
 
@@ -38,7 +38,7 @@ val dim : (int * int) Tyre.t
 
 type t('a);
 
-/** {1 Combinators} */;
+/** {1 Combinators} */
 
 /** [pcre s] is a tyregex that matches the PCRE [s] and return the
     corresponding string.
@@ -79,7 +79,7 @@ let opt: t('a) => t(option('a));
 
 let alt: (t('a), t('b)) => t([ | `Left('a) | `Right('b)]);
 
-/** {2 Repetitions} */;
+/** {2 Repetitions} */
 
 /** [rep tyre] matches [tyre] zero or more times. Similar to {!Re.rep}.
 
@@ -92,7 +92,7 @@ let rep: t('a) => t(Seq.t('a));
 
 let rep1: t('a) => t(('a, Seq.t('a)));
 
-/** {2 Sequences} */;
+/** {2 Sequences} */
 
 /** [seq tyre1 tyre2] matches [tyre1] then [tyre2] and return both values. */
 
@@ -107,7 +107,7 @@ let prefix: (t(_), t('a)) => t('a);
 
 let suffix: (t('a), t(_)) => t('a);
 
-/** {2 Infix operators} */;
+/** {2 Infix operators} */
 
 /** [t <|> t'] is [alt t t']. */
 
@@ -143,7 +143,7 @@ module Infix: {
   let ( <* ): (t('a), t(_)) => t('a);
 };
 
-/** {2 Useful combinators} */;
+/** {2 Useful combinators} */
 
 /** [str s] matches [s] and evaluates to [s]. */
 
@@ -196,7 +196,7 @@ let separated_list: (~sep: t(_), t('a)) => t(list('a));
 
 /** {2 Other combinators}
 
-    See {!Re} for details on the semantics of those combinators. */;
+    See {!Re} for details on the semantics of those combinators. */
 
 let start: t(unit);
 let stop: t(unit);
@@ -210,7 +210,7 @@ let greedy: t('a) => t('a);
 let non_greedy: t('a) => t('a);
 let nest: t('a) => t('a);
 
-/** {1:matching Matching} */;
+/** {1:matching Matching} */
 
 /** A compiled typed regular expression. */
 
@@ -249,7 +249,7 @@ let exec:
 
 let execp: (~pos: int=?, ~len: int=?, re('a), string) => bool;
 
-/** {2:repeat Repeated Matching} */;
+/** {2:repeat Repeated Matching} */
 
 /** [all ctyre s] calls to {!exec} repeatedly and returns the list of all the matches. */
 
@@ -265,7 +265,7 @@ let all:
 
 let all_seq: (~pos: int=?, ~len: int=?, re('a), string) => Seq.t('a);
 
-/** {2:routing Routing} */;
+/** {2:routing Routing} */
 
 type route(+'a) =
   | /** A route is a pair of a tyregex and a handler.
@@ -290,7 +290,7 @@ let (-->): (t('x), 'x => 'a) => route('a);
 
 let route: list(route('a)) => re('a);
 
-/** {1:eval Evaluating} */;
+/** {1:eval Evaluating} */
 
 /** [eval tyre v] returns a string [s] such that [exec (compile tyre) s = v].
 
@@ -309,13 +309,13 @@ Format.printf "%a@." my_pp v
 
 let evalpp: (t('a), Format.formatter, 'a) => unit;
 
-/** {1:pp Pretty printing} */;
+/** {1:pp Pretty printing} */
 
 let pp: (Format.formatter, t('a)) => unit;
 
 let pp_re: (Format.formatter, re('a)) => unit;
 
-/**/**/;
+
 
 /** Internal types */
 

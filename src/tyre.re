@@ -32,7 +32,7 @@ module Seq = {
 
 let map_3 = (f, (x, y, z)) => (x, y, f(z));
 
-/** {2 The various types} */;
+/** {2 The various types} */
 
 module T = {
   type conv('a, 'b) = {
@@ -174,14 +174,14 @@ let separated_list = (~sep, e) => {
   conv(to_, from_, e);
 };
 
-/** {2 Witness} */;
+/** {2 Witness} */
 
 /** A witness is a string such that [exec (compile re) (witness re) = true].
     The computation of the witness is deterministic and should result in
     a small example.
 
     It is used in [eval] for the part of the regex that are ignored.
-*/;
+*/
 
 let rec witnesspp: type a. (Format.formatter, t(a)) => unit =
   (ppf, tre) =>
@@ -206,9 +206,9 @@ let rec witnesspp: type a. (Format.formatter, t(a)) => unit =
       }
     );
 
-/** {2 Evaluation functions} */;
+/** {2 Evaluation functions} */
 
-/** Evaluation is the act of filling the holes. */;
+/** Evaluation is the act of filling the holes. */
 
 let pstr = Format.pp_print_string;
 let rec pprep = (f, ppf, seq) =>
@@ -274,7 +274,7 @@ let rec evalpp: type a. (t(a), Format.formatter, a) => unit =
 
 let eval = tre => Format.asprintf("%a", evalpp(tre));
 
-/** {2 matching} */;
+/** {2 matching} */
 
 /** {3 Regexp construction}
 
@@ -283,7 +283,7 @@ let eval = tre => Format.asprintf("%a", evalpp(tre));
 
     Each alternative is marked with {!Re.mark}. We store the markid in order
     to be able to guess the branch matched.
-*/;
+*/
 
 let rec build: type a. (int, t(a)) => (int, T.wit(a), Re.t) = {
   open! Re;
@@ -338,7 +338,7 @@ let rec build: type a. (int, t(a)) => (int, T.wit(a), Re.t) = {
   );
 };
 
-/** {3 Extraction.} */;
+/** {3 Extraction.} */
 
 /** Extracting is just a matter of following the witness.
     We just need to take care of counting where we are in the matching groups.
@@ -394,7 +394,7 @@ and extract_list:
     Seq.map(aux) @@ Re.Seq.all(~pos, ~len, re, original);
   };
 
-/** {4 Multiple match} */;
+/** {4 Multiple match} */
 
 type route(+'r) =
   | Route(t('a), 'a => 'r): route('r);
@@ -434,7 +434,7 @@ let rec extract_route = (~original, wl, subs) =>
     }
   };
 
-/** {4 Compilation and execution} */;
+/** {4 Compilation and execution} */
 
 type info('r) =
   | One(T.wit('r))
@@ -489,7 +489,7 @@ let all = (~pos=?, ~len=?, tcre, original) =>
   | exn => Result.Error(`ConverterFailure(exn))
   };
 
-/** Pretty printers */;
+/** Pretty printers */
 
 let sexp = (ppf, s, fmt) =>
   Format.fprintf(ppf, "@[<3>(%s@ " ^^ fmt ^^ ")@]", s);

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@opam/ocaml-lsp-server": "*",
+    "@opam/ocamlfind-secondary": "*",
+    "@opam/reason": "*",
+    "@opam/dune": "*",
+    "ocaml": "4.12.0"
+  }
+}
