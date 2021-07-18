@@ -1,4 +1,0 @@
-(executable
- (modes byte exe)
- (name benchmark_angstrom)
- (libraries benchmark angstrom tyre containers gen))
